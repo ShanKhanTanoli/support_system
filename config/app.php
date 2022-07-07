@@ -211,8 +211,8 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
 
         'Ticket' => App\Helpers\Ticket::class,
-        'Question' => App\Helpers\Question::class,
-        'Answer' => App\Helpers\Answer::class,
+        'Thread' => App\Helpers\Thread::class,
+        'Message' => App\Helpers\Message::class,
 
     ])->toArray(),
 

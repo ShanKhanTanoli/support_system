@@ -36,7 +36,7 @@ return new class extends Migration
                 ->onUpdate('cascade');
 
 
-            $table->text('body')->nullable();
+            $table->longText('body')->nullable();
 
             $table->timestamps();
         });

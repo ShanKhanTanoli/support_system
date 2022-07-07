@@ -4,26 +4,21 @@ namespace App\Helpers;
 
 use Illuminate\Support\Str;
 use App\Mail\TicketAnswered;
-use App\Models\Customer;
 use Illuminate\Support\Facades\Mail;
 use App\Models\Ticket as TicketModel;
-use App\Models\User;
 
 class Ticket
 {
     //Agent will answer
     public static function Open($customer, $support_type)
     {
-        //Create a Question
-        $ticket = TicketModel::create([
+        //Create ticket and return it
+        return TicketModel::create([
             'ticket' => strtoupper(Str::random(10)),
             'customer_name' => $customer->name,
             'customer_email' => $customer->email,
             'support_type' => $support_type,
         ]);
-
-        //Return the question variable
-        return $ticket;
     }
 
     //Find Ticket
@@ -59,24 +54,5 @@ class Ticket
         return $ticket->update([
             'status' => "spam",
         ]);
-    }
-
-    //All questions on this ticket
-    public static function Questions($ticket)
-    {
-        return $ticket->questions;
-    }
-
-    //All answers on this ticket
-    public static function Answers($ticket)
-    {
-        return $ticket->answers;
-    }
-
-    //Belongs to a customer
-    public static function Customer($ticket)
-    {
-        $email = $ticket->customer_email;
-        return Customer::where('email', $email)->first();
     }
 }

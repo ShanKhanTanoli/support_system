@@ -26,11 +26,11 @@ return new class extends Migration
                 ->onUpdate('cascade');
 
             //Support Ticket foreign key
-            $table->unsignedBigInteger('support_ticket_id')
+            $table->unsignedBigInteger('ticket_id')
                 ->nullable();
-            $table->foreign('support_ticket_id')
+            $table->foreign('ticket_id')
                 ->references('id')
-                ->on('support_tickets')
+                ->on('tickets')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
