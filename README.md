@@ -1,6 +1,6 @@
-Demo support ticketing project based on Laravel 8.
+Online Support System on Laravel 9.19.
 
-Project is partly generated with [QuickAdminPanel](https://2019.quickadminpanel.com)
+Project is developed with Custom Code
 
 ---
 
