@@ -24,7 +24,7 @@ Project is developed with Custom Code
 
 ---
 
-![Laravel Support Tickets 06](https://laraveldaily.com/wp-content/uploads/2019/11/Screen-Shot-2019-11-15-at-6.17.59-PM.png)
+![Email Notification](https://laraveldaily.com/wp-content/uploads/2019/11/Screen-Shot-2019-11-15-at-6.17.59-PM.png)
 
 ---
 
