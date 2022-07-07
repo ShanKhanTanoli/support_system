@@ -13,27 +13,26 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('questions', function (Blueprint $table) {
+        Schema::create('messages', function (Blueprint $table) {
             $table->id();
 
-            //Customer asking a question 
-            $table->unsignedBigInteger('customer_id')->nullable();
-            $table->foreign('customer_id')
+            //Thread Foreign key 
+            $table->unsignedBigInteger('thread_id')->nullable();
+            $table->foreign('thread_id')
                 ->references('id')
-                ->on('customers')
+                ->on('threads')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 
-            //Questions for a specific Ticket (Ticket ID)
-            $table->unsignedBigInteger('ticket_id')->nullable();
-            $table->foreign('ticket_id')
+            //User foreign key
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')
                 ->references('id')
-                ->on('tickets')
+                ->on('users')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 
-            //Question
-            $table->longText('question')->nullable();
+            $table->longText('body')->nullable();
 
             $table->timestamps();
         });
@@ -46,6 +45,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('questions');
+        Schema::dropIfExists('messages');
     }
 };
