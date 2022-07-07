@@ -7,7 +7,7 @@ use App\Models\Message as MessageModel;
 class Message
 {
     //Reply to that thread
-    public static function Start($ticket, $thread, $user, $body)
+    public static function Send($ticket, $thread, $user, $body)
     {
         //If status is not in_progress then update the status
         if ($ticket->status !== "in_progress") {

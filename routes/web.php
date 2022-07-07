@@ -1,10 +1,7 @@
 <?php
 
 use App\Models\User;
-use App\Helpers\Answer;
-use App\Helpers\Ticket;
-use App\Models\Customer;
-use App\Helpers\Question;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Laravel\Sanctum\PersonalAccessToken;
 
@@ -29,44 +26,20 @@ Route::get('/', function () {
 
 Route::get('debug', function () {
 
-    $customer = Customer::find(1);
+    //$customer = User::where('role','customer')->first();
+    //$customer_token = $customer->createToken('auth-token')->plainTextToken;
+    // $customer_token = "1|Ob31J7D4lXZo1LEcSUrOJxxsMAjiDeCy37Om22dB";
+    // $customer_find_token = PersonalAccessToken::findToken($customer_token);
+    // dd($customer_find_token->tokenable);
 
-    //$token = $customer->createToken('auth-token')->plainTextToken;
-
-    $customer_token = "1|sW164uAsN1WVG67FwLgtEGiAaPvti77cURHvP9Zo";
-
-    //dd($token);
-
-    $agent = User::find(1);
-
+    //$agent = User::where('role','support')->first();
     //$agent_token = $agent->createToken('auth-token')->plainTextToken;
-
-    //dd(PersonalAccessToken::findToken($agent_token)->tokenable);
-
-    //Open a Ticket
-    //$ticket = Ticket::Open($customer, 'Technical Support');
-
-    $ticket = Ticket::Find(1);
-
-    //Ask a Question
-    //$question = Question::Start($customer, $ticket, 'Hello there');
-
-    $question = Question::Find(1);
-
-    //Answer to the question
-    //$answer = Answer::Start($agent, $ticket, $question, "How may i help you ?");
-
-    $answer = Answer::Find(1);
-
-    $token = PersonalAccessToken::findToken($customer_token);
-
-    dd($token);
-
-    //return Ticket::MarkSpam($ticket);
-
-    
+    // $agent_token = "2|O0J3Nxew30CMKUHq7uvpWfNPmztVG8AuXoyUfdDK";
+    // $agent_find_token = PersonalAccessToken::findToken($agent_token);
+    // dd($agent_find_token->tokenable);
 });
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
+    ->name('home');
