@@ -3,9 +3,10 @@
 use App\Models\User;
 use App\Helpers\Answer;
 use App\Helpers\Ticket;
-use App\Helpers\Question;
 use App\Models\Customer;
+use App\Helpers\Question;
 use Illuminate\Support\Facades\Route;
+use Laravel\Sanctum\PersonalAccessToken;
 
 
 /*
@@ -21,9 +22,6 @@ use Illuminate\Support\Facades\Route;
 
 //Support System
 
-Route::get('email', function () {
-    return view('emails.notification-email');
-});
 
 Route::get('/', function () {
     return view('welcome');
@@ -33,10 +31,20 @@ Route::get('debug', function () {
 
     $customer = Customer::find(1);
 
+    //$token = $customer->createToken('auth-token')->plainTextToken;
+
+    $customer_token = "1|sW164uAsN1WVG67FwLgtEGiAaPvti77cURHvP9Zo";
+
+    //dd($token);
+
     $agent = User::find(1);
 
+    //$agent_token = $agent->createToken('auth-token')->plainTextToken;
+
+    //dd(PersonalAccessToken::findToken($agent_token)->tokenable);
+
     //Open a Ticket
-    $ticket = Ticket::Open($customer, 'Technical Support');
+    //$ticket = Ticket::Open($customer, 'Technical Support');
 
     $ticket = Ticket::Find(1);
 
@@ -50,7 +58,11 @@ Route::get('debug', function () {
 
     $answer = Answer::Find(1);
 
+    $token = PersonalAccessToken::findToken($customer_token);
+
+    dd($token);
+
     //return Ticket::MarkSpam($ticket);
 
-    dd(Ticket::Customer($ticket));
+    
 });
