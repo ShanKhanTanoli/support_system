@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Message;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,23 +17,26 @@ return new class extends Migration
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
 
-            //Thread Foreign key 
-            $table->unsignedBigInteger('thread_id')->nullable();
+            //Thread foreign key
+            $table->unsignedBigInteger('thread_id')
+                ->nullable();
             $table->foreign('thread_id')
                 ->references('id')
                 ->on('threads')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
 
             //User foreign key
-            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('user_id')
+                ->nullable();
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
 
-            $table->longText('body')->nullable();
+
+            $table->text('body')->nullable();
 
             $table->timestamps();
         });

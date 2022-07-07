@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use App\Models\Answer;
-use App\Models\Question;
+use App\Models\User;
+use App\Models\Thread;
+use App\Models\Message;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -14,15 +15,21 @@ class Ticket extends Model
     protected $fillable = ['ticket', 'status', 'customer_name', 'customer_email', 'support_type'];
 
 
-    //Ticket has many questions
-    public function questions()
+    //Ticket has many messages
+    public function messages()
     {
-        return $this->hasMany(Question::class);
+        return $this->hasMany(Message::class);
     }
 
-    //Ticket has many answers
-    public function answers()
+    //Ticket has many threads
+    public function threads()
     {
-        return $this->hasMany(Answer::class);
+        return $this->hasMany(Thread::class);
+    }
+
+    //Ticket belongs to user
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

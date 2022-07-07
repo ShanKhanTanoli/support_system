@@ -13,30 +13,31 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('questions', function (Blueprint $table) {
+        Schema::create('threads', function (Blueprint $table) {
             $table->id();
 
             //User foreign key
-            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('user_id')
+                ->nullable();
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
 
-            //Ticket Foreign Key
-            $table->unsignedBigInteger('ticket_id')->nullable();
-            $table->foreign('ticket_id')
+            //Support Ticket foreign key
+            $table->unsignedBigInteger('support_ticket_id')
+                ->nullable();
+            $table->foreign('support_ticket_id')
                 ->references('id')
-                ->on('tickets')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
+                ->on('support_tickets')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
 
-            //Question
-            $table->longText('question')->nullable();
-
+            $table->longText('body')->nullable();
             $table->timestamps();
         });
+
     }
 
     /**
@@ -46,6 +47,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('questions');
+        Schema::dropIfExists('threads');
     }
 };
